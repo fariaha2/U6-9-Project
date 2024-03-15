@@ -10,6 +10,7 @@ public class Main {
             if(j<=5) {
                 same[2][j]="-";
             }
+
             if(j==5) {
                 int k=3;
                 while(k<same.length) {
