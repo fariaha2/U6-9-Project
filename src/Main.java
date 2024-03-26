@@ -16,6 +16,16 @@ public class Main {
                 while(k<same.length) {
                     same[k][j]="|";
                     k++;
+                    if(k==4) {
+                        same[k][j-3]="o";
+                    }
+                    if(k==5) {
+                        same[k][j-2]="-";
+                        same[k][j-4]="-";
+                    }
+                    if(k==5 || k==6) {
+                        same[k][j-3]="|";
+                    }
                 }
             }
             same[0][j]="-";
