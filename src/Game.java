@@ -51,6 +51,7 @@ public class Game {
                 generateOrder();
 
             } else {
+                // next station
 
             }
         } else {
@@ -59,13 +60,19 @@ public class Game {
 
     }
     public void Station2() {
-        // print
+        boolean food=true;
+        if(food) {
+            // print
+        } else {
+            System.out.println("There is nothing cooking right now. Go take some orders!");
+        }
     }
     public void Station3() {
-        // print
+        // build
+
     }
     public void Station4() {
-        // print
+        // cutting
     }
     private ArrayList<ArrayList> generateOrder() {
         ArrayList<Order> order = new ArrayList<>();

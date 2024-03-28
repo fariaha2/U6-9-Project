@@ -3,7 +3,7 @@ public class Main {
         String[][] same = new String[9][20];
         for(int i=0; i<same.length; i++) {
             for(int j=0; j<same[0].length; j++) {
-                same[i][j]="h";
+                same[i][j]=" ";
             }
         }
         for(int j=0; j<same[0].length; j++) {
@@ -22,6 +22,8 @@ public class Main {
                     if(k==5) {
                         same[k][j-2]="-";
                         same[k][j-4]="-";
+                        same[k+2][j-4]="/";
+                        same[k+2][j-2]="\\";
                     }
                     if(k==5 || k==6) {
                         same[k][j-3]="|";
