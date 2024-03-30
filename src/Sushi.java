@@ -1,19 +1,32 @@
 public class Sushi extends Order{
+    private double price;
     private Boolean riceInOut;
     private int numOfCuts;
-    public Sushi(double p, Boolean r) {
+    private String filling1;
+    private String filling2;
+    private String topping;
+
+    public Sushi(double p, Boolean r, String filling1, String filling2, String topping, int cuts) {
         super(p);
         riceInOut=r;
+        this.filling1 = filling1;
+        this.filling2 = filling2;
+        this.topping = topping;
+        numOfCuts = cuts;
     }
-    public static String riceType() {
-        int rand = (int) (Math.random()*2)+1;
-        if(rand==1) {
-            return "Brown rice";
-        } else {
-            return "White rice";
-        }
+    public String getFilling1() {
+        return filling1;
     }
-    public static String filling() {
-        return "f";
+    public String getFilling2() {
+        return filling2;
+    }
+    public String getTopping() {
+        return topping;
+    }
+    public int getNumOfCuts() {
+        return numOfCuts;
+    }
+    public Boolean getRiceInOut() {
+        return riceInOut;
     }
 }
