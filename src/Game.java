@@ -89,7 +89,7 @@ public class Game {
             sushi2=Utility.sushiWhiteRice();
         }
         System.out.println("Great! Step 2: Filling");
-        System.out.println("Filling 1: " + s.getFilling1() + "Filling 2: " +s.getFilling2());
+        System.out.println("Filling 1: " + s.getFilling1() + " Filling 2: " +s.getFilling2());
         System.out.println("Fillings list: ");
         for(int i=0; i<fillings.length; i++) {
             System.out.print(fillings[i] + ", ");
@@ -120,6 +120,16 @@ public class Game {
         }
         System.out.println("What is the second filling?");
         ans = scan.nextLine().toLowerCase();
+        while(!ans.equals("crab") && !ans.equals("shrimp") && !ans.equals("spicy tuna")
+                && !ans.equals("avocado") && !ans.equals("cucumber")) {
+            System.out.println("You have to choose a filling from the list.");
+            System.out.println("Fillings list: ");
+            for(int i=0; i<fillings.length; i++) {
+                System.out.print(fillings[i] + ", ");
+            }
+            System.out.println("What filling would you like to use?");
+            ans = scan.nextLine().toLowerCase();
+        }
         filling2 = ans;
         if(ans.equals("crab")) {
             sushi2=Utility.fillings2(sushi2, "\uD83E\uDD80");
@@ -155,6 +165,11 @@ public class Game {
         System.out.println("Customer wants: " + d.getDrinkType());
         System.out.println("Does the customer want tea, or juice?");
         ans = scan.nextLine().toLowerCase();
+        while(!ans.equals("tea") && !ans.equals("juice")) {
+            System.out.println("You must enter tea or juice.");
+            System.out.println("Does the customer want tea, or juice?");
+            ans = scan.nextLine().toLowerCase();
+        }
         type=ans;
         System.out.println("Last step: What flavor?");
         System.out.println("Customer wants: " + d.getFlavor());
@@ -164,6 +179,24 @@ public class Game {
         }
         System.out.println("Choose a flavor.");
         ans = scan.nextLine().toLowerCase();
+        while(!ans.equals("mango") && !ans.equals("strawberry") && !ans.equals("cherry")) {
+            System.out.println("You must enter a flavor from the flavors list.");
+            System.out.println("Flavors list: ");
+            for(int i=0; i<flavors.length; i++) {
+                System.out.print(flavors[i] + ", ");
+            }
+            System.out.println("Choose a flavor.");
+            ans = scan.nextLine().toLowerCase();
+
+        }
+        if(ans.equals("mango")) {
+            flavor = "\uD83D\uDFE0";
+        } else if(ans.equals("strawberry")) {
+            flavor = "\uD83D\uDD34";
+        } else {
+            flavor = "\uD83D\uDD34";
+        }
+        Utility.flavorDrink(drink2, size, flavor);
         flavor=ans;
         System.out.println("All done now!");
         moneyMade=moneyMade+o.getPrice();

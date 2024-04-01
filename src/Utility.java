@@ -391,4 +391,34 @@ public class Utility {
         }
         return drink;
     }
+    /* public static String[][] flavorDrink(String[][] drink, String size, String f) {
+        if(size.equals("large")) {
+            for(int j=3; j<7; j++) {
+                for(int i=5; i<9; i++ ) {
+                    drink[j][i]=f;
+                }
+            }
+        } else if(size.equals("medium")) {
+            for(int j=4; j<7; j++) {
+                for(int i=5; i<12; i++ ) {
+                    drink[j][i]=f;
+                }
+            }
+        } else {
+            for(int j=5; j<7; j++) {
+                for(int i=5; i<12; i++ ) {
+                    drink[j][i]=f;
+                }
+            }
+        }
+        for(int i=0; i<drink.length; i++) {
+            for(int j=0; j<drink[0].length; j++) {
+                System.out.print(drink[i][j]);
+            }
+            System.out.println();
+        }
+        return drink;
+    }
+
+     */
 }
