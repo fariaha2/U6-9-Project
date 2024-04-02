@@ -1,9 +1,9 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-        // medium
-        // small
-      Game g = new Game();
+     Game g = new Game();
 
     }
 }

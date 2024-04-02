@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Game {
-    private Boolean customer=true;
+    private String play="";
     private double moneyMade;
     private int customersServed=0;
     private int timing=0;
@@ -27,20 +27,20 @@ public class Game {
             System.out.println("You will be assessed on how well you made the food and how much time it took.");
         }
         System.out.println("Good luck!");
-        String play = "y";
+        //long start = System.currentTimeMillis();
+       // long diff = 0;
+        play="y";
         while(play.equals("y")) {
             station1();
+           // long end = System.currentTimeMillis();
+          //  diff=end-start;
         }
-        /*  if() {
-                System.out.println("Money made: " + moneyMade());
-                System.out.println("Timing: " + timing + "/5");
-                System.out.println("Build: " + build/customersServed + "/5");
-                System.out.println("Drinks: " + drinks/customersServed + "/5");
-                System.out.println("Want to play again?");
-                ans = scan.nextLine().toLowerCase();
-                if(ans.equals("yes") {
-                }
-        */
+        System.out.println("Money made: " + moneyMade);
+        System.out.println("Timing: " + timing + "/5");
+        System.out.println("Build: " + build/customersServed + "/5");
+        System.out.println("Drinks: " + drinks/customersServed + "/5");
+        System.out.println("Want to play again?");
+        ans = scan.nextLine().toLowerCase();
         System.out.println("Goodbye!");
         }
     public void station1() {
@@ -49,7 +49,7 @@ public class Game {
         System.out.println("Want to take their order? (y) Or would you like to go to the next station? (n)");
         String ans = scan.nextLine().toLowerCase();
         if(!(ans.equals("y"))) {
-            System.out.println("You can't go to the next station without having an order to make, you idiot!");
+            System.out.println("You can't go to the next station without having an order to make!");
         }
         generateOrder();
         System.out.println(printOrder());
@@ -189,14 +189,15 @@ public class Game {
             ans = scan.nextLine().toLowerCase();
 
         }
-        if(ans.equals("mango")) {
+        /* if(ans.equals("mango")) {
             flavor = "\uD83D\uDFE0";
         } else if(ans.equals("strawberry")) {
             flavor = "\uD83D\uDD34";
         } else {
             flavor = "\uD83D\uDD34";
         }
-        Utility.flavorDrink(drink2, size, flavor);
+
+         */
         flavor=ans;
         System.out.println("All done now!");
         moneyMade=moneyMade+o.getPrice();
@@ -206,6 +207,7 @@ public class Game {
     }
     public void station3(int s1, int s2) {
         // highest score 8
+        Scanner scan = new Scanner(System.in);
         int score=s1+s2;
         if(score==8) {
             Utility.happyFace();
@@ -223,6 +225,9 @@ public class Game {
             Utility.angryFace();
             System.out.println("HORRENDOUS! You got EVERYTHING WRONG!! \uD83E\uDD2C");
         }
+        System.out.println("Want to play again? (y/n)");
+        play = scan.nextLine();
+
     }
     private void generateOrder() {
         // still incomplete
@@ -310,9 +315,9 @@ public class Game {
        Order o = orders.get(0);
        String ord = "";
        ord = ord + "Order number: " + o.getNumber() + "\nPrice: " + o.getPrice();
-       ord = ord + "\nSushi: " + "\nRice type: " + s.getRice() + "\nFilling 1: " + s.getFilling1() +
-               " Filling 2: " + s.getFilling2();
-       ord = ord + "\nDrink: \nDrink size: " + d.getSize() + "\nDrink type: " + d.getDrinkType() + "\nFlavor: " + d.getFlavor();
+       ord = ord + "\nSushi \uD83C\uDF63 " + "\nRice type: " + s.getRice() +
+               "\nFilling 1: " + s.getFilling1() + "\nFilling 2: " + s.getFilling2();
+       ord = ord + "\nDrink \uD83E\uDD64 \nDrink size: " + d.getSize() + "\nDrink type: " + d.getDrinkType() + "\nFlavor: " + d.getFlavor();
 
         return ord;
     }
