@@ -225,6 +225,7 @@ public class Game {
             Utility.angryFace();
             System.out.println("HORRENDOUS! You got EVERYTHING WRONG!! \uD83E\uDD2C");
         }
+        customersServed++;
         System.out.println("Want to play again? (y/n)");
         play = scan.nextLine();
 

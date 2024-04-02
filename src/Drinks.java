@@ -9,6 +9,10 @@ public class Drinks extends Order{
         this.drinkType=drinkType;
         this.flavor=flavor;
     }
+    @Override
+    public double getPrice() {
+        return super.getPrice()*0.25;
+    }
     public String getSize() {
         return size;
     }
