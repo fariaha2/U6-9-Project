@@ -11,6 +11,7 @@ public class Game {
     private ArrayList<Order> orders = new ArrayList<>();
     private ArrayList<Drinks> drink = new ArrayList<>();
     private ArrayList<Sushi> sushi = new ArrayList<>();
+    private ArrayList<Order> orderss = new ArrayList<>();
     private String[] fillings = {"Cucumber", "Avocado", "Shrimp", "Crab", "Spicy tuna"};
     private String[] flavors = {"Mango", "Strawberry", "Cherry"};
     public Game() {
@@ -56,6 +57,7 @@ public class Game {
         station2();
     }
     public void station2() {
+        Sushi s;
         int score1;
         int score2;
         String size;
@@ -64,14 +66,17 @@ public class Game {
         String rice;
         String filling1;
         String filling2;
-        String topping;
         String[][] sushi2 = new String[9][20];
         String[][] drink2 = new String[9][20];
         Scanner scan = new Scanner(System.in);
         String ans="";
-        Order o = orders.get(0);
-        Sushi s = sushi.get(0);
-        Drinks d = drink.get(0);
+        Order o =orderss.get(0);
+        if(orderss.get(1) instanceof Sushi) {
+            Sushi s = (Sushi) orderss.get(1);
+        }
+        if(orderss.get(2) instanceof Drinks) {
+            Drinks d = (Drinks) orderss.get(2);
+        }
         System.out.println("It's time to make sushi!");
         System.out.println("Step 1: Rice");
         System.out.println("Rice type: " + s.getRice());
@@ -244,7 +249,8 @@ public class Game {
         Boolean inOut;
         p = (int) (Math.random()*35)+10;
         Order o = new Order(p, numOfOrders);
-        orders.add(o);
+        orderss.add(o);
+       // orders.add(o);
         int rand = (int) (Math.random()*3)+1;
         if(rand==1) {
             filling1="Crab";
@@ -273,8 +279,10 @@ public class Game {
         }
         Drinks drink = new Drinks(p, numOfOrders, size, type, flavor);
         Sushi sushi = new Sushi(p, numOfOrders, filling1, filling2, rice);
-        this.drink.add(drink);
-        this.sushi.add(sushi);
+        orderss.add(drink);
+        orderss.add(sushi);
+       // this.drink.add(drink);
+      //  this.sushi.add(sushi);
     }
     private int scoringSushi(String rice, String filling1, String filling2) {
         // sushi, max score 4
