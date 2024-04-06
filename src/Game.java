@@ -24,14 +24,14 @@ public class Game {
         System.out.println("Do you need a tutorial? (y/n)");
         String ans = scan.nextLine().toLowerCase();
         if(ans.equals("y")) {
-            System.out.println("You are supposed to take customer's orders and make food for them.");
-            System.out.println("You will be assessed on how well you made the food and how much time it took.");
+            System.out.println("You are given five minutes to take customer's orders and make food for them.");
+            System.out.println("You will be assessed on how well you made the food.");
         }
         System.out.println("Good luck!");
         start = System.currentTimeMillis();
         station1();
         if(customersServed==0) {
-            System.out.println("You didnt serve ANY customers!");
+            System.out.println("You didn't serve ANY customers!");
         } else {
             int maxScore=4*customersServed;
             System.out.println("Customers served: " + customersServed);
@@ -360,8 +360,8 @@ public class Game {
        ord = ord + "Order number: " + o.getNumber() + "\nPrice: " + o.getPrice();
        ord = ord + "\nSushi \uD83C\uDF63 " + "\nRice type: " + s.getRice() +
                "\nFilling 1: " + s.getFilling1() + "\nFilling 2: " + s.getFilling2();
-       ord = ord + "\nDrink \uD83E\uDD64 \nDrink size: " + d.getSize() + "\nDrink type: " + d.getDrinkType() + "\nFlavor: " + d.getFlavor();
-
+       ord = ord + "\nDrink \uD83E\uDD64 \nDrink size: " + d.getSize()
+               + "\nDrink type: " + d.getDrinkType() + "\nFlavor: " + d.getFlavor();
         return ord;
     }
 }
