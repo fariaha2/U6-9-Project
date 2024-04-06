@@ -1,26 +1,26 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Game {
-    private String play="";
     private double moneyMade;
     private int customersServed=0;
-    private int timing=0;
     private int build=0;
     private int drinks=0;
     private int numOfOrders=0;
-    private ArrayList<Order> orders = new ArrayList<>();
+    private long start;
+    private ArrayList<Order> order = new ArrayList<>();
     private ArrayList<Drinks> drink = new ArrayList<>();
     private ArrayList<Sushi> sushi = new ArrayList<>();
-    private ArrayList<Order> orderss = new ArrayList<>();
+    private ArrayList<Order> orders = new ArrayList<>();
     private String[] fillings = {"Cucumber", "Avocado", "Shrimp", "Crab", "Spicy tuna"};
     private String[] flavors = {"Mango", "Strawberry", "Cherry"};
     public Game() {
         Start();
     }
+
     public void Start() {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Welcome to the..");
+        System.out.println("Welcome to the Sushi Game!");
         System.out.println("Do you need a tutorial? (y/n)");
         String ans = scan.nextLine().toLowerCase();
         if(ans.equals("y")) {
@@ -28,21 +28,61 @@ public class Game {
             System.out.println("You will be assessed on how well you made the food and how much time it took.");
         }
         System.out.println("Good luck!");
-        //long start = System.currentTimeMillis();
-       // long diff = 0;
-        play="y";
-        while(play.equals("y")) {
-            station1();
-           // long end = System.currentTimeMillis();
-          //  diff=end-start;
+        start = System.currentTimeMillis();
+        station1();
+        if(customersServed==0) {
+            System.out.println("You didnt serve ANY customers!");
+        } else {
+            int maxScore=4*customersServed;
+            System.out.println("Customers served: " + customersServed);
+            System.out.println("Money made: " + moneyMade);
+            if(build==maxScore) {
+                System.out.println("Build: 5/5 ⭐⭐⭐⭐⭐");
+            } else if(build<maxScore && build>=maxScore-4) {
+                System.out.println("Build 4/5 ⭐⭐⭐⭐");
+            } else if(build<maxScore-4 && build>=maxScore-8) {
+                System.out.println("Build 3/5 ⭐⭐⭐");
+            } else if(build<maxScore-8 && maxScore>=12) {
+                System.out.println("Build 2/5 ⭐⭐");
+            } else {
+                System.out.println("Build 1/5 ⭐");
+            }
+            if(build==4*customersServed) {
+                System.out.println("Drinks: 5/5 ⭐⭐⭐⭐⭐");
+            } else if(build==(4*customersServed)) {
+                System.out.println("Drinks 4/5 ⭐⭐⭐⭐");
+            } else if(build==(4*customersServed)-8) {
+                System.out.println("Drinks 3/5 ⭐⭐⭐");
+            } else if(build==(4*customersServed)-12) {
+                System.out.println("Drinks 2/5 ⭐⭐");
+            } else {
+                System.out.println("Drinks 1/5 ⭐");
+            }
+            System.out.println("Want to see all the orders you took? (y/n)");
+            ans = scan.nextLine().toLowerCase();
+            if(ans.equals("y")) {
+                for(int i=0; i<orders.size(); i++) {
+                    if(orders.get(i) instanceof Order) {
+                        System.out.println("Order number: " + orders.get(i).getNumber() + "\nPrice: " + orders.get(i).getPrice());
+                    } else if(orders.get(i) instanceof Sushi) {
+                        Sushi s = (Sushi) orders.get(i);
+                        System.out.println("Sushi " + "\nRice type: " +s.getRice() + "\n Fillings: " + s.getFilling1()
+                                + ", and " + s.getFilling2());
+                    } else {
+                        Drinks d = (Drinks) orders.get(i);
+                        System.out.println("Drink " + "\nDrink type: " + d.getDrinkType() + "\nSize: "
+                                + d.getSize() + "\nFlavor: " + d.getFlavor());
+                    }
+                }
+            }
         }
-        System.out.println("Money made: " + moneyMade);
-        System.out.println("Timing: " + timing + "/5");
-        System.out.println("Build: " + build/customersServed + "/5");
-        System.out.println("Drinks: " + drinks/customersServed + "/5");
-        System.out.println("Want to play again?");
+        System.out.println("Want to play again? (y/n)");
         ans = scan.nextLine().toLowerCase();
-        System.out.println("Goodbye!");
+        if(ans.equals("y")) {
+            Start();
+        } else {
+            System.out.println("Goodbye!");
+        }
         }
     public void station1() {
         Scanner scan = new Scanner(System.in);
@@ -54,10 +94,14 @@ public class Game {
         }
         generateOrder();
         System.out.println(printOrder());
-        station2();
+        long end = System.currentTimeMillis();
+        if(end-start<300000) {
+            station2();
+        } else {
+            System.out.println("Time's up!");
+        }
     }
     public void station2() {
-        Sushi s;
         int score1;
         int score2;
         String size;
@@ -70,13 +114,9 @@ public class Game {
         String[][] drink2 = new String[9][20];
         Scanner scan = new Scanner(System.in);
         String ans="";
-        Order o =orderss.get(0);
-        if(orderss.get(1) instanceof Sushi) {
-            Sushi s = (Sushi) orderss.get(1);
-        }
-        if(orderss.get(2) instanceof Drinks) {
-            Drinks d = (Drinks) orderss.get(2);
-        }
+        Order o = order.get(0);
+        Sushi s = sushi.get(0);
+        Drinks d = drink.get(0);
         System.out.println("It's time to make sushi!");
         System.out.println("Step 1: Rice");
         System.out.println("Rice type: " + s.getRice());
@@ -194,21 +234,18 @@ public class Game {
             ans = scan.nextLine().toLowerCase();
 
         }
-        /* if(ans.equals("mango")) {
-            flavor = "\uD83D\uDFE0";
-        } else if(ans.equals("strawberry")) {
-            flavor = "\uD83D\uDD34";
-        } else {
-            flavor = "\uD83D\uDD34";
-        }
-
-         */
         flavor=ans;
-        System.out.println("All done now!");
-        moneyMade=moneyMade+o.getPrice();
-        score1 = scoringSushi(rice, filling1, filling2);
-        score2 = scoringDrink(size, type, flavor);
-        station3(score1, score2);
+        long end = System.currentTimeMillis();
+        long diff = end-start;
+        if(diff>=300000) {
+            System.out.println("Times up!");
+        } else {
+            System.out.println("All done now!");
+            moneyMade=moneyMade+o.getPrice();
+            score1 = scoringSushi(rice, filling1, filling2);
+            score2 = scoringDrink(size, type, flavor);
+            station3(score1, score2);
+        }
     }
     public void station3(int s1, int s2) {
         // highest score 8
@@ -230,15 +267,15 @@ public class Game {
             Utility.angryFace();
             System.out.println("HORRENDOUS! You got EVERYTHING WRONG!! \uD83E\uDD2C");
         }
+        sushi.remove(0);
+        order.remove(0);
+        drink.remove(0);
         customersServed++;
-        System.out.println("Want to play again? (y/n)");
-        play = scan.nextLine();
+        station1();
 
     }
     private void generateOrder() {
-        // still incomplete
         numOfOrders++;
-        int numOfCuts=0;
         int p=0;
         String rice;
         String size;
@@ -246,11 +283,7 @@ public class Game {
         String flavor;
         String filling1;
         String filling2;
-        Boolean inOut;
         p = (int) (Math.random()*35)+10;
-        Order o = new Order(p, numOfOrders);
-        orderss.add(o);
-       // orders.add(o);
         int rand = (int) (Math.random()*3)+1;
         if(rand==1) {
             filling1="Crab";
@@ -269,20 +302,21 @@ public class Game {
             filling2="Avocado";
             type="Tea";
             flavor="Strawberry";
-            inOut=true;
         } else {
             rice= "White";
             filling2="Cucumber";
             type="Juice";
             flavor="Cherry";
-            inOut=false;
         }
+        Order o = new Order(p, numOfOrders);
         Drinks drink = new Drinks(p, numOfOrders, size, type, flavor);
         Sushi sushi = new Sushi(p, numOfOrders, filling1, filling2, rice);
-        orderss.add(drink);
-        orderss.add(sushi);
-       // this.drink.add(drink);
-      //  this.sushi.add(sushi);
+        this.sushi.add(sushi);
+        this.drink.add(drink);
+        order.add(o);
+        orders.add(o);
+        orders.add(drink);
+        orders.add(sushi);
     }
     private int scoringSushi(String rice, String filling1, String filling2) {
         // sushi, max score 4
@@ -321,7 +355,7 @@ public class Game {
     private String printOrder() {
        Sushi s = sushi.get(0);
        Drinks d = drink.get(0);
-       Order o = orders.get(0);
+       Order o = order.get(0);
        String ord = "";
        ord = ord + "Order number: " + o.getNumber() + "\nPrice: " + o.getPrice();
        ord = ord + "\nSushi \uD83C\uDF63 " + "\nRice type: " + s.getRice() +
