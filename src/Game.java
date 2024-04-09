@@ -24,8 +24,8 @@ public class Game {
         System.out.println("Do you need a tutorial? (y/n)");
         String ans = scan.nextLine().toLowerCase();
         if(ans.equals("y")) {
-            System.out.println("You are given five minutes to take customer's orders and make food for them.");
-            System.out.println("You will be assessed on how well you made the food.");
+            System.out.println("You are given five minutes to take customer's orders and make food for them. You must make as many orders as you can.");
+            System.out.println("The moment the five minutes are up, you will be assessed on how well you made the food.");
         }
         System.out.println("Good luck!");
         start = System.currentTimeMillis();
